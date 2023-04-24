@@ -64,7 +64,7 @@ class Solution:
                 return self.kthSmallest(arr,l,pivotIndex-1,k)
             
             #else k is smaller so recurse in the right subarray
-            return self.kthSmallest(arr,pivotIndex+1,r,k - pivotIndex + l - 1)
+            return self.kthSmallest(arr,pivotIndex+1,r,k - pivotIndex + l - 1)# why is k-pivotIndex+l-1
         
         # for i in range(k):
         #     min = arr[0]
