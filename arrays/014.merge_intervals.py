@@ -1,5 +1,5 @@
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def merge(self, intervals: list[list[int]]) -> list[list[int]]:
         intervals.sort(key=lambda i:i[0])
         output = [intervals[0]] #new array to store the reuslt of all merges, intitialised to first element of the sorted interval array
         for start,end in intervals[1:]:
