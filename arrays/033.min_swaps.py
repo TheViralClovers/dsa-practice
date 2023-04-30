@@ -1,73 +1,57 @@
-#User function template for Python
+#User function Template for python3
 
 class Solution:
-	#Function to partition the array around the range such 
-	#that array is divided into three parts.
-	def threeWayPartition(self, array, a, b):
-		# code here 
-		start = 0
-		i = 0
-		end = len(array)-1
-		while i<=end:
-			if array[i] < a:
-				array[start],array[i]=array[i],array[start]
-				i+=1
-				start+=1
-				
-			elif array[i] > b:
-				array[end],array[i]=array[i],array[end]
-				end-=1
-				
-			else:
-				i+=1
+        
+    def minSwap (self,arr, n, k) : 
+        #Complete the function
+        count = 0 #elements less than or equal to k
+        bad = 0 #elements gretaer than k within count
+        
+        for i in range(n):
+            if arr[i]<=k:
+                count+=1
+                
+        for i in range(count):
+            if arr[i]>k:
+                bad+=1
+        
+        ans=bad #sliding window size is set to value of bad        
+        j=count
+        
+        for i in range(0,n):
+            if(j==n):
+                break
+            
+            if arr[i] > k:
+                bad-=1
+                
+            if arr[j] > k:
+                bad+=1
+                
+            ans = min(bad,ans)
+            
+            j+=1
+            
+        return ans
+
+
+
 
 #{ 
  # Driver Code Starts
-#Initial template for Python
+#Initial Template for Python 3
 
-from collections import Counter
+for _ in range(0,int(input())):
+    n = int(input())
+    arr = list(map(int, input().strip().split()))
+    k = int(input())
+    ob=Solution()
+    ans = ob.minSwap(arr, n, k)
+    print(ans)
+    
 
-if __name__=='__main__':
-	t = int(input())
-	for i in range(t):
-		n = int(input())
-		array = list(map(int, input().strip().split()))
-		original = Counter(array)
-		a,b = list(map(int, input().strip().split()))
-		ob = Solution()
-		ob.threeWayPartition(array, a, b)
 
-		k1 = k2 = k3 = 0
-		for e in array:
-			if e > a:
-				k3+=1
-			elif e<=a and e>=b:
-				k2+=1
-			elif e<a:
-				k1+=1
 
-		m1 = m2 = m3 = 0
-		for e in range(k1):
-			if array[e]<a:
-				m1+=1
-		for e in range(k1, k1+k2):
-			if array[e]<=a and array[e]>=b:
-				m2+=1
-		for e in range(k1+k2, k1+k2+k3):
-			if array[e]>=a:
-				m3+=1
 
-		flag = False
-		if k1==m1 and k2==m2 and k3==m3:
-			flag = True
-		for e in range(len(array)):
-			original[array[e]]-=1
-		for e in range(len(array)):
-			if original[array[e]]!=0:
-				flag = False
-		if flag:
-			print(1)
-		else:
-			print(0)
 
 # } Driver Code Ends
